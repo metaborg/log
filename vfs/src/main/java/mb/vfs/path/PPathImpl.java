@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
@@ -79,6 +81,12 @@ public class PPathImpl implements PPath {
         return new PPathImpl(relative);
     }
 
+    @Override public String relativizeStringFrom(PPath other) {
+        final Path path = getJavaPath();
+        final Path relative = path.relativize(other.getJavaPath());
+        return relative.toString();
+    }
+
     @Override public @Nullable PPath parent() {
         final Path parent = getJavaPath().getParent();
         if(parent == null) {
@@ -122,6 +130,16 @@ public class PPathImpl implements PPath {
         final Path resolved = thisJavaPath.resolve(other);
         return new PPathImpl(resolved);
     }
+    
+    @Override public PPath extend(String other) {
+        final Path path = getJavaPath();
+        final Path filenamePath = path.getFileName();
+        if(filenamePath == null) {
+            return this;
+        }
+        final String filename = filenamePath.toString() + other;
+        return new PPathImpl(path.resolveSibling(filename));
+    }
 
     @Override public PPath replaceExtension(String extension) {
         final Path path = getJavaPath();
@@ -136,7 +154,7 @@ public class PPathImpl implements PPath {
         return new PPathImpl(path.resolveSibling(filenameNewExt));
     }
 
-
+    
     @Override public Stream<PPath> list() throws IOException {
         // @formatter:off
         return Files
@@ -178,9 +196,17 @@ public class PPathImpl implements PPath {
         return Files.readAllBytes(getJavaPath());
     }
 
+    @Override public List<String> readAllLines(Charset cs) throws IOException {
+        return Files.readAllLines(getJavaPath(), cs);
+    }
+
     @Override public OutputStream outputStream() throws IOException {
         return Files.newOutputStream(getJavaPath(), StandardOpenOption.WRITE, StandardOpenOption.CREATE,
             StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    @Override public boolean deleteFile() throws IOException {
+        return Files.deleteIfExists(getJavaPath());
     }
 
 

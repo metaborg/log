@@ -1,18 +1,20 @@
 package mb.vfs.path;
 
-import mb.vfs.access.DirAccess;
-import mb.vfs.list.PathMatcher;
-import mb.vfs.list.PathWalker;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
+
+import mb.vfs.access.DirAccess;
+import mb.vfs.list.PathMatcher;
+import mb.vfs.list.PathWalker;
 
 public interface PPath extends Serializable {
     URI getUri();
@@ -25,27 +27,31 @@ public interface PPath extends Serializable {
     boolean isFile();
 
     boolean exists();
-    
+
     long lastModifiedTimeMs() throws IOException;
 
-    
+
     PPath normalized();
-    
+
     PPath relativizeFrom(PPath other);
-    
+
+    String relativizeStringFrom(PPath other);
+
     @Nullable PPath parent();
 
     @Nullable PPath leaf();
-    
+
     @Nullable String extension();
 
 
     PPath resolve(PPath other);
-    
+
     PPath resolve(String other);
-    
+
+    PPath extend(String other);
+
     PPath replaceExtension(String extension);
-    
+
 
     default Stream<PPath> list() throws IOException {
         return list(PPaths.allPathMatcher());
@@ -69,11 +75,15 @@ public interface PPath extends Serializable {
 
 
     InputStream inputStream() throws IOException;
-    
+
     byte[] readAllBytes() throws IOException;
 
+    List<String> readAllLines(Charset cs) throws IOException;
+
     OutputStream outputStream() throws IOException;
-    
-    
+
+    boolean deleteFile() throws IOException;
+
+
     String toString();
 }
