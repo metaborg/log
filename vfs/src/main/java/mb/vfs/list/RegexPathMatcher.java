@@ -13,14 +13,15 @@ public class RegexPathMatcher implements PathMatcher {
     public RegexPathMatcher(Pattern regex) {
         this.regex = regex;
     }
-    
+
     public RegexPathMatcher(String regex) {
         this.regex = Pattern.compile(regex);
     }
 
 
     @Override public boolean matches(PPath path, PPath root) {
-        return regex.matcher(path.toString()).matches();
+        final String relative = root.normalized().relativizeStringFrom(path.normalized());
+        return regex.matcher(relative).matches();
     }
 
 

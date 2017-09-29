@@ -26,9 +26,9 @@ public class PatternsPathMatcher implements PathMatcher {
 
 
     @Override public boolean matches(PPath path, PPath root) {
-        final PPath relativePath = root.normalized().relativizeFrom(path.normalized());
+        final String relative = root.normalized().relativizeStringFrom(path.normalized());
         for(AntPattern pattern : patterns) {
-            if(pattern.match(relativePath.toString())) {
+            if(pattern.match(relative)) {
                 return true;
             }
         }
