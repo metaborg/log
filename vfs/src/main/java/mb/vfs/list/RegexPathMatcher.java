@@ -5,30 +5,36 @@ import java.util.regex.Pattern;
 import mb.vfs.path.PPath;
 
 public class RegexPathMatcher implements PathMatcher {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
-    private final Pattern regex;
+    private final String pattern;
+    private transient Pattern compiledPattern;
 
 
-    public RegexPathMatcher(Pattern regex) {
-        this.regex = regex;
-    }
-
-    public RegexPathMatcher(String regex) {
-        this.regex = Pattern.compile(regex);
+    public RegexPathMatcher(String pattern) {
+        this.pattern = pattern;
+        this.compiledPattern = Pattern.compile(pattern);
     }
 
 
     @Override public boolean matches(PPath path, PPath root) {
         final String relative = root.normalized().relativizeStringFrom(path.normalized());
-        return regex.matcher(relative).matches();
+        return compiledPattern().matcher(relative).matches();
+    }
+
+
+    private Pattern compiledPattern() {
+        if(compiledPattern == null) {
+            compiledPattern = Pattern.compile(pattern);
+        }
+        return compiledPattern;
     }
 
 
     @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + regex.hashCode();
+        result = prime * result + pattern.hashCode();
         return result;
     }
 
@@ -40,7 +46,7 @@ public class RegexPathMatcher implements PathMatcher {
         if(getClass() != obj.getClass())
             return false;
         final RegexPathMatcher other = (RegexPathMatcher) obj;
-        if(!regex.equals(other.regex))
+        if(!pattern.equals(other.pattern))
             return false;
         return true;
     }

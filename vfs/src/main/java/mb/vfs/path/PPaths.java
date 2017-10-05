@@ -61,16 +61,8 @@ public class PPaths {
     public static PathMatcher regexPathMatcher(String regex) {
         return new RegexPathMatcher(regex);
     }
-
-    public static PathMatcher regexPathMatcher(Pattern regex) {
-        return new RegexPathMatcher(regex);
-    }
-
+    
     public static PathWalker regexPathWalker(String regex) {
-        return new PathMatcherWalker(regexPathMatcher(regex));
-    }
-
-    public static PathWalker regexPathWalker(Pattern regex) {
         return new PathMatcherWalker(regexPathMatcher(regex));
     }
 

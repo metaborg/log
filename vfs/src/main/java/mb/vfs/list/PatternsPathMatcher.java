@@ -1,26 +1,25 @@
 package mb.vfs.list;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import mb.vfs.path.PPath;
 
 public class PatternsPathMatcher implements PathMatcher {
     private static final long serialVersionUID = 1L;
 
-    private final Set<AntPattern> patterns;
+    private final ArrayList<AntPattern> patterns;
 
 
     public PatternsPathMatcher(Collection<String> patterns) {
-        this.patterns = new HashSet<>();
+        this.patterns = new ArrayList<>();
         for(String pattern : patterns) {
             this.patterns.add(new AntPattern(pattern));
         }
     }
 
     public PatternsPathMatcher(String pattern) {
-        this.patterns = new HashSet<>();
+        this.patterns = new ArrayList<>();
         this.patterns.add(new AntPattern(pattern));
     }
 
