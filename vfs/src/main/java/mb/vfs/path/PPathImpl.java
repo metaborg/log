@@ -1,5 +1,11 @@
 package mb.vfs.path;
 
+import mb.vfs.access.DirAccess;
+import mb.vfs.list.PathMatcher;
+import mb.vfs.list.PathWalker;
+import mb.vfs.list.PathWalkerVisitor;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -11,13 +17,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Stream;
-
-import javax.annotation.Nullable;
-
-import mb.vfs.access.DirAccess;
-import mb.vfs.list.PathMatcher;
-import mb.vfs.list.PathWalker;
-import mb.vfs.list.PathWalkerVisitor;
 
 public class PPathImpl implements PPath {
     private static final long serialVersionUID = 1L;
@@ -130,7 +129,7 @@ public class PPathImpl implements PPath {
         final Path resolved = thisJavaPath.resolve(other);
         return new PPathImpl(resolved);
     }
-    
+
     @Override public PPath extend(String other) {
         final Path path = getJavaPath();
         final Path filenamePath = path.getFileName();
@@ -154,7 +153,7 @@ public class PPathImpl implements PPath {
         return new PPathImpl(path.resolveSibling(filenameNewExt));
     }
 
-    
+
     @Override public Stream<PPath> list() throws IOException {
         // @formatter:off
         return Files
@@ -203,6 +202,25 @@ public class PPathImpl implements PPath {
     @Override public OutputStream outputStream() throws IOException {
         return Files.newOutputStream(getJavaPath(), StandardOpenOption.WRITE, StandardOpenOption.CREATE,
             StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    @Override public void createFile() throws IOException {
+        Files.createFile(getJavaPath());
+    }
+
+    @Override public void createDirectory() throws IOException {
+        Files.createDirectory(getJavaPath());
+    }
+
+    @Override public void createDirectories() throws IOException {
+        Files.createDirectories(getJavaPath());
+    }
+
+    @Override public void createParentDirectories() throws IOException {
+        final PPath parent = parent();
+        if(parent != null) {
+            parent.createDirectories();
+        }
     }
 
     @Override public boolean deleteFile() throws IOException {

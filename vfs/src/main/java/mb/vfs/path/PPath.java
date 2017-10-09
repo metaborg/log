@@ -1,5 +1,10 @@
 package mb.vfs.path;
 
+import mb.vfs.access.DirAccess;
+import mb.vfs.list.PathMatcher;
+import mb.vfs.list.PathWalker;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -9,12 +14,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
-
-import javax.annotation.Nullable;
-
-import mb.vfs.access.DirAccess;
-import mb.vfs.list.PathMatcher;
-import mb.vfs.list.PathWalker;
 
 public interface PPath extends Serializable {
     URI getUri();
@@ -81,6 +80,16 @@ public interface PPath extends Serializable {
     List<String> readAllLines(Charset cs) throws IOException;
 
     OutputStream outputStream() throws IOException;
+
+
+    void createFile() throws IOException;
+
+    void createDirectory() throws IOException;
+
+    void createDirectories() throws IOException;
+
+    void createParentDirectories() throws IOException;
+
 
     boolean deleteFile() throws IOException;
 
