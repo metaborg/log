@@ -79,7 +79,13 @@ public interface PPath extends Serializable {
 
     List<String> readAllLines(Charset cs) throws IOException;
 
+
     OutputStream outputStream() throws IOException;
+
+
+    void touchFile() throws IOException;
+
+    void touchDirectory() throws IOException;
 
 
     void createFile() throws IOException;
