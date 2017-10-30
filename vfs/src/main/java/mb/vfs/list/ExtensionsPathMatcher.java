@@ -54,6 +54,6 @@ public class ExtensionsPathMatcher implements PathMatcher {
     }
 
     @Override public String toString() {
-        return "ExtensionsPathMatcher";
+        return "ExtensionsPathMatcher(" + String.join(", ", extensions) + ")";
     }
 }
