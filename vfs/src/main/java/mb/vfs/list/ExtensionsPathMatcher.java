@@ -1,23 +1,27 @@
 package mb.vfs.list;
 
+import mb.vfs.path.PPath;
+
 import java.util.ArrayList;
 import java.util.Collection;
-
-import mb.vfs.path.PPath;
+import java.util.HashSet;
 
 public class ExtensionsPathMatcher implements PathMatcher {
     private static final long serialVersionUID = 1L;
 
     private final ArrayList<String> extensions;
+    private transient HashSet<String> extensionsHashSet;
 
 
     public ExtensionsPathMatcher(Collection<String> extensions) {
         this.extensions = new ArrayList<>(extensions);
+        this.extensionsHashSet = new HashSet<>(extensions);
     }
 
     public ExtensionsPathMatcher(String extension) {
         this.extensions = new ArrayList<>();
         this.extensions.add(extension);
+        this.extensionsHashSet = new HashSet<>(this.extensions);
     }
 
 
@@ -29,7 +33,10 @@ public class ExtensionsPathMatcher implements PathMatcher {
         if(extension == null) {
             return false;
         }
-        return extensions.contains(extension);
+        if(extensionsHashSet == null) {
+            extensionsHashSet = new HashSet<>(extensions);
+        }
+        return extensionsHashSet.contains(extension);
     }
 
 
