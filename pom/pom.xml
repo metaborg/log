@@ -135,9 +135,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/metaborg/util.git</connection>
-    <developerConnection>scm:git:ssh://github.com:metaborg/util.git</developerConnection>
-    <url>https://github.com/metaborg/util</url>
+    <connection>scm:git:git://github.com/metaborg/log.git</connection>
+    <developerConnection>scm:git:ssh://github.com:metaborg/log.git</developerConnection>
+    <url>https://github.com/metaborg/log</url>
   </scm>
 
   <developers>
