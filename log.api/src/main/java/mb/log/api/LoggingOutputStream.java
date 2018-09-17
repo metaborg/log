@@ -1,4 +1,4 @@
-package mb.log;
+package mb.log.api;
 
 import java.io.IOException;
 import java.io.OutputStream;

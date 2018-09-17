@@ -1,9 +1,3 @@
-# Metaborg utility library
+# Metaborg logging abstraction
 
-This repository contains several utility libraries written in Java.
-
-## Components
-
-* [log](log): Logging abstraction
-* [vfs](vfs): Filesystem abstraction
-* [util](util): Miscellaneous utility classes
+A logging abstraction for `org.metaborg` projects.

@@ -1,9 +1,11 @@
-package mb.log;
+package mb.log.slf4j;
 
-import javax.annotation.Nullable;
-
+import mb.log.api.ALogger;
+import mb.log.api.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.helpers.MessageFormatter;
+
+import javax.annotation.Nullable;
 
 public class SLF4JLogger extends ALogger {
     private final org.slf4j.Logger logger;
