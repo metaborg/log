@@ -151,9 +151,13 @@
 
   <distributionManagement>
     <repository>
-      <id>bintray-maven-metaborg-log</id>
-      <url>https://api.bintray.com/maven/metaborg/maven/log/</url>
+      <id>metaborg-artifacts</id>
+      <url>https://artifacts.metaborg.org/content/repositories/releases/</url>
     </repository>
+    <snapshotRepository>
+      <id>metaborg-artifacts</id>
+      <url>https://artifacts.metaborg.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <description>Metaborg logging abstraction parent POM</description>
