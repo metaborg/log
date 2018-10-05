@@ -112,6 +112,11 @@
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.5</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.4.1</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -124,8 +129,34 @@
     </extensions>
   </build>
 
-  <name>${project.artifactId}</name>
-  <url>${project.scm.url}</url>
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>enforce-no-snapshots</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireReleaseDeps>
+                      <message>No snapshot dependencies are allowed in release builds</message>
+                    </requireReleaseDeps>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <licenses>
     <license>
@@ -161,4 +192,7 @@
   </distributionManagement>
 
   <description>Metaborg logging abstraction parent POM</description>
+
+  <name>${project.artifactId}</name>
+  <url>${project.scm.url}</url>
 </project>
