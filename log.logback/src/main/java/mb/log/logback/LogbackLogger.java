@@ -1,15 +1,15 @@
-package mb.log.slf4j;
+package mb.log.logback;
 
 import mb.log.api.Formatter;
 import mb.log.api.Logger;
 
 import javax.annotation.Nullable;
 
-public class SLF4JLogger implements Logger {
-    private final org.slf4j.Logger logger;
+public class LogbackLogger implements Logger {
+    private final ch.qos.logback.classic.Logger logger;
 
 
-    SLF4JLogger(org.slf4j.Logger logger) {
+    LogbackLogger(ch.qos.logback.classic.Logger logger) {
         this.logger = logger;
     }
 
@@ -60,6 +60,6 @@ public class SLF4JLogger implements Logger {
 
 
     @Override public Formatter formatter() {
-        return SLF4JFormatter.instance;
+        return LogbackFormatter.instance;
     }
 }

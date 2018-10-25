@@ -3,73 +3,178 @@ package mb.log.api;
 import javax.annotation.Nullable;
 
 public interface Logger {
-    void trace(String msg);
-
     void trace(String msg, @Nullable Throwable t);
-
-    void trace(String fmt, Object... args);
-
-    void trace(String fmt, Throwable t, Object... args);
 
     boolean traceEnabled();
 
+    default void trace(String msg) {
+        trace(msg, (Throwable) null);
+    }
 
-    void debug(String msg);
+    default void trace(String format, Object... args) {
+        if(traceEnabled()) {
+            final String msg = formatter().format(format, args);
+            trace(msg);
+        }
+    }
+
+    default void trace(String format, Throwable cause, Object... args) {
+        if(traceEnabled()) {
+            final String msg = formatter().format(format, cause, args);
+            trace(msg, cause);
+        }
+    }
+
 
     void debug(String msg, @Nullable Throwable t);
 
-    void debug(String fmt, Object... args);
-
-    void debug(String fmt, Throwable t, Object... args);
-
     boolean debugEnabled();
 
+    default void debug(String msg) {
+        debug(msg, (Throwable) null);
+    }
 
-    void info(String msg);
+    default void debug(String format, Object... args) {
+        if(debugEnabled()) {
+            final String msg = formatter().format(format, args);
+            debug(msg);
+        }
+    }
+
+    default void debug(String format, Throwable cause, Object... args) {
+        if(debugEnabled()) {
+            final String msg = formatter().format(format, cause, args);
+            debug(msg, cause);
+        }
+    }
+
 
     void info(String msg, @Nullable Throwable t);
 
-    void info(String fmt, Object... args);
-
-    void info(String fmt, Throwable t, Object... args);
-
     boolean infoEnabled();
 
+    default void info(String msg) {
+        info(msg, (Throwable) null);
+    }
 
-    void warn(String msg);
+    default void info(String format, Object... args) {
+        if(infoEnabled()) {
+            final String msg = formatter().format(format, args);
+            info(msg);
+        }
+    }
+
+    default void info(String format, Throwable cause, Object... args) {
+        if(infoEnabled()) {
+            final String msg = formatter().format(format, args);
+            info(msg, cause);
+        }
+    }
+
 
     void warn(String msg, @Nullable Throwable t);
 
-    void warn(String fmt, Object... args);
-
-    void warn(String fmt, Throwable t, Object... args);
-
     boolean warnEnabled();
 
+    default void warn(String msg) {
+        warn(msg, (Throwable) null);
+    }
 
-    void error(String msg);
+    default void warn(String format, Object... args) {
+        if(warnEnabled()) {
+            final String msg = formatter().format(format, args);
+            warn(msg);
+        }
+    }
+
+    default void warn(String format, Throwable cause, Object... args) {
+        if(warnEnabled()) {
+            final String msg = formatter().format(format, args);
+            warn(msg, cause);
+        }
+    }
+
 
     void error(String msg, @Nullable Throwable t);
 
-    void error(String fmt, Object... args);
-
-    void error(String fmt, Throwable t, Object... args);
-
     boolean errorEnabled();
 
+    default void error(String msg) {
+        error(msg, (Throwable) null);
+    }
 
-    void log(Level level, String msg);
+    default void error(String format, Object... args) {
+        if(errorEnabled()) {
+            final String msg = formatter().format(format, args);
+            error(msg);
+        }
+    }
 
-    void log(Level level, String msg, @Nullable Throwable t);
+    default void error(String format, Throwable cause, Object... args) {
+        if(errorEnabled()) {
+            final String msg = formatter().format(format, args);
+            error(msg, cause);
+        }
+    }
 
-    void log(Level level, String fmt, Object... args);
 
-    void log(Level level, String fmt, Throwable t, Object... args);
+    default void log(Level level, String msg) {
+        log(level, msg, (Throwable) null);
+    }
 
-    boolean enabled(Level level);
+    default void log(Level level, String msg, @Nullable Throwable cause) {
+        switch(level) {
+            case Trace:
+                trace(msg, cause);
+                break;
+            case Debug:
+                debug(msg, cause);
+                break;
+            case Info:
+                info(msg, cause);
+                break;
+            case Warn:
+                warn(msg, cause);
+                break;
+            case Error:
+                error(msg, cause);
+                break;
+            default:
+                throw new IllegalStateException("Level " + level + " is not recognized.");
+        }
+    }
+
+    default void log(Level level, String format, Object... args) {
+        if(enabled(level)) {
+            final String msg = formatter().format(format, args);
+            log(level, msg);
+        }
+    }
+
+    default void log(Level level, String format, Throwable cause, Object... args) {
+        if(enabled(level)) {
+            final String msg = formatter().format(format, args);
+            log(level, msg, cause);
+        }
+    }
+
+    default boolean enabled(Level level) {
+        switch(level) {
+            case Trace:
+                return traceEnabled();
+            case Debug:
+                return debugEnabled();
+            case Info:
+                return infoEnabled();
+            case Warn:
+                return warnEnabled();
+            case Error:
+                return errorEnabled();
+            default:
+                throw new IllegalStateException("Level " + level + " is not recognized.");
+        }
+    }
 
 
-    Logger forContext(Class<?> clazz);
-
-    Logger forContext(String name);
+    Formatter formatter();
 }
