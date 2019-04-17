@@ -1,5 +1,5 @@
 @DefaultQualifier(NonNull.class)
-package mb.log.logback;
+package mb.log.noop;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.framework.qual.DefaultQualifier;

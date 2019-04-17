@@ -13,11 +13,14 @@ pluginManagement {
   }
 }
 
+include("depconstraints")
+
 fun includeProject(path: String, id: String = "log.${path.replace('/', '.')}") {
   include(id)
   project(":$id").projectDir = file(path)
 }
 
 includeProject("api")
+includeProject("backend.noop")
 includeProject("backend.logback")
 includeProject("backend.slf4j")
