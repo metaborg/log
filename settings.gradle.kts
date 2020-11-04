@@ -17,6 +17,5 @@ fun includeProject(path: String, id: String = "log.${path.replace('/', '.')}") {
 
 includeProject("depconstraints")
 includeProject("api")
-includeProject("backend.noop")
 includeProject("backend.logback")
 includeProject("backend.slf4j")

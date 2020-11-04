@@ -1,4 +1,7 @@
-package mb.log.api;
+package mb.log.stream;
+
+import mb.log.api.Level;
+import mb.log.api.Logger;
 
 import java.io.IOException;
 import java.io.OutputStream;
