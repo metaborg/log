@@ -58,7 +58,7 @@ public class NoopLogger implements Logger {
 
     @Override public void error(String format, Throwable cause, Object... args) {}
 
-    @Override public boolean enabled(Level level) { return false; }
+    @Override public boolean isEnabled(Level level) { return false; }
 
     @Override public void log(Level level, String msg) {}
 

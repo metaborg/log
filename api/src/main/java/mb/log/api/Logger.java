@@ -76,7 +76,7 @@ public interface Logger {
     void error(String format, Throwable cause, Object... args);
 
 
-    default boolean enabled(Level level) {
+    default boolean isEnabled(Level level) {
         switch(level) {
             case None:
                 return false;
