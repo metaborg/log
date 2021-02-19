@@ -3,9 +3,16 @@ plugins {
   `maven-publish`
 }
 
+val checkerframeworkVersion = "3.10.0"
+
+val daggerVersion = "2.32"
+
 dependencies {
   constraints {
-    api("org.checkerframework:checker-qual-android:2.6.0") // Use android version: annotation retention policy is class instead of runtime.
+    api("org.checkerframework:checker-qual-android:$checkerframeworkVersion") // Use android version: annotation retention policy is class instead of runtime.
+
+    api("com.google.dagger:dagger:$daggerVersion")
+    api("com.google.dagger:dagger-compiler:$daggerVersion")
   }
 }
 

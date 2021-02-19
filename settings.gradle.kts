@@ -1,4 +1,4 @@
-rootProject.name = "log"
+rootProject.name = "log.root"
 
 pluginManagement {
   repositories {
@@ -19,3 +19,4 @@ includeProject("depconstraints")
 includeProject("api")
 includeProject("backend.logback")
 includeProject("backend.slf4j")
+includeProject("dagger")
