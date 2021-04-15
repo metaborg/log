@@ -5,7 +5,7 @@ plugins {
 
 val checkerframeworkVersion = "3.10.0"
 
-val daggerVersion = "2.32"
+val daggerVersion = "2.34.1"
 
 dependencies {
   constraints {
