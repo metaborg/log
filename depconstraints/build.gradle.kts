@@ -5,7 +5,7 @@ plugins {
 
 val checkerframeworkVersion = "3.16.0"
 
-val daggerVersion = "2.37"
+val daggerVersion = "2.36" // Do not upgrade, causes Gradle/Kotlin compatibility issues due to upgrade to Kotlin 1.5.
 
 dependencies {
   constraints {
