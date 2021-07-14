@@ -3,9 +3,9 @@ plugins {
   `maven-publish`
 }
 
-val checkerframeworkVersion = "3.10.0"
+val checkerframeworkVersion = "3.16.0"
 
-val daggerVersion = "2.34.1"
+val daggerVersion = "2.37"
 
 dependencies {
   constraints {
