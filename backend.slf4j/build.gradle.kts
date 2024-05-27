@@ -1,13 +1,13 @@
 plugins {
-  id("org.metaborg.gradle.config.java-library")
+    id("org.metaborg.gradle.config.java-library")
 }
 
 dependencies {
-  api(platform(project(":log.depconstraints")))
+    api(platform(project(":log.depconstraints")))
 
-  api(project(":log.api"))
+    api(project(":log.api"))
 
-  api("org.slf4j:slf4j-api:1.7.25")
+    api("org.slf4j:slf4j-api:1.7.25")
 
-  compileOnly("org.checkerframework:checker-qual-android")
+    compileOnly("org.checkerframework:checker-qual-android")
 }
