@@ -1,10 +1,6 @@
+// Workaround for issue: https://youtrack.jetbrains.com/issue/KTIJ-19369
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("org.metaborg.gradle.config.root-project") version "0.7.1"
-    id("org.metaborg.gitonium") version "1.2.0"
-}
-
-subprojects {
-    metaborg {
-        configureSubProject()
-    }
+    alias(libs.plugins.metaborg.convention.rootproject)
+    alias(libs.plugins.gitonium)
 }

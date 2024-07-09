@@ -1,10 +1,12 @@
 plugins {
-    id("org.metaborg.gradle.config.java-library")
+    `java-library`
+    id("org.metaborg.convention.java")
 }
+
+group = "org.metaborg"
 
 dependencies {
     api(project(":log.api"))
-
     api(libs.slf4j.api)
 
     compileOnly(libs.checkerframework.android)
