@@ -5,9 +5,12 @@
 
 A logging abstraction library for Metaborg projects.
 
-| Artifact           | Latest Release                            |
-|--------------------|-------------------------------------------|
-| `org.metaborg:log` | [![org.metaborg:log][maven-badge]][maven] |
+| Artifact                           | Latest Release                                                                            |
+|------------------------------------|-------------------------------------------------------------------------------------------|
+| `org.metaborg:log.api`             | [![org.metaborg:log.api][maven-api-badge]][maven-api]                                     |
+| `org.metaborg:log.backend.logback` | [![org.metaborg:log.backend.logback][maven-backend-logback-badge]][maven-backend-logback] |
+| `org.metaborg:log.backend.slf4j`   | [![org.metaborg:log.backend.slf4j][maven-backend-slf4j-badge]][maven-backend-slf4j]       |
+| `org.metaborg:log.dagger`          | [![org.metaborg:log.dagger][maven-dagger-badge]][maven-dagger]                            |
 
 
 
@@ -25,6 +28,11 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [github-release-badge]: https://img.shields.io/github/v/release/metaborg/log
 [github-release]: https://github.com/metaborg/log/releases
 
-[maven-badge]: https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fartifacts.metaborg.org%2Fcontent%2Frepositories%2Freleases%2Forg%2Fmetaborg%2Flog%2Fmaven-metadata.xml
-[maven]: https://artifacts.metaborg.org/#nexus-search;gav~org.metaborg~log~~~
-
+[maven-api-badge]: https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fartifacts.metaborg.org%2Fcontent%2Frepositories%2Freleases%2Forg%2Fmetaborg%2Flog.api%2Fmaven-metadata.xml
+[maven-api]: https://artifacts.metaborg.org/#nexus-search;gav~org.metaborg~log.api~~~
+[maven-backend-logback-badge]: https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fartifacts.metaborg.org%2Fcontent%2Frepositories%2Freleases%2Forg%2Fmetaborg%2Flog.backend.logback%2Fmaven-metadata.xml
+[maven-backend-logback]: https://artifacts.metaborg.org/#nexus-search;gav~org.metaborg~log.backend.logback~~~
+[maven-backend-slf4j-badge]: https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fartifacts.metaborg.org%2Fcontent%2Frepositories%2Freleases%2Forg%2Fmetaborg%2Flog.backend.slf4j%2Fmaven-metadata.xml
+[maven-backend-slf4j]: https://artifacts.metaborg.org/#nexus-search;gav~org.metaborg~log.backend.slf4j~~~
+[maven-dagger-badge]: https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fartifacts.metaborg.org%2Fcontent%2Frepositories%2Freleases%2Forg%2Fmetaborg%2Flog.dagger%2Fmaven-metadata.xml
+[maven-dagger]: https://artifacts.metaborg.org/#nexus-search;gav~org.metaborg~log.dagger~~~
