@@ -1,5 +1,6 @@
 rootProject.name = "log.root"
 
+// This allows us to use plugins from Metaborg Artifacts
 pluginManagement {
     repositories {
         maven("https://artifacts.metaborg.org/content/groups/public/")
@@ -17,6 +18,12 @@ dependencyResolutionManagement {
         }
     }
 }
+
+// This downloads an appropriate JVM if not already available
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
+
 
 fun includeProject(path: String, id: String = "log.${path.replace('/', '.')}") {
     include(id)
