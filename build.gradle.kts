@@ -1,7 +1,7 @@
 // Workaround for issue: https://youtrack.jetbrains.com/issue/KTIJ-19369
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.metaborg.convention.rootproject)
+    id("org.metaborg.convention.root-project")
     alias(libs.plugins.gitonium)
 }
 
