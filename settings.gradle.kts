@@ -25,12 +25,7 @@ plugins {
 }
 
 
-fun includeProject(path: String, id: String = "log.${path.replace('/', '.')}") {
-    include(id)
-    project(":$id").projectDir = file(path)
-}
-
-includeProject("api")
-includeProject("backend.logback")
-includeProject("backend.slf4j")
-includeProject("dagger")
+include(":log.api")
+include(":log.backend.logback")
+include(":log.backend.slf4j")
+include(":log.dagger")
