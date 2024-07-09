@@ -2,6 +2,7 @@ package mb.log.logback;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.util.ContextInitializer;
+import ch.qos.logback.classic.util.DefaultJoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import mb.log.api.Logger;
 import mb.log.api.LoggerFactory;
@@ -21,8 +22,11 @@ public class LogbackLoggerFactory implements LoggerFactory {
 
     public static LogbackLoggerFactory createWithConfigurationUrl(URL url) throws JoranException {
         final LoggerContext context = new LoggerContext();
-        final ContextInitializer initializer = new ContextInitializer(context);
-        initializer.configureByResource(url);
+
+        DefaultJoranConfigurator joranConfigurator = new DefaultJoranConfigurator();
+        joranConfigurator.setContext(context);
+        joranConfigurator.configureByResource(url);
+
         return new LogbackLoggerFactory(context);
     }
 
