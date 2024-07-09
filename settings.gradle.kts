@@ -30,7 +30,6 @@ fun includeProject(path: String, id: String = "log.${path.replace('/', '.')}") {
     project(":$id").projectDir = file(path)
 }
 
-includeProject("depconstraints")
 includeProject("api")
 includeProject("backend.logback")
 includeProject("backend.slf4j")
