@@ -3,11 +3,9 @@ plugins {
 }
 
 dependencies {
-    api(platform(project(":log.depconstraints")))
-
     api(project(":log.api"))
 
-    api("ch.qos.logback:logback-classic:1.2.3")
+    api(libs.logback)
 
-    compileOnly("org.checkerframework:checker-qual-android")
+    compileOnly(libs.checkerframework.android)
 }

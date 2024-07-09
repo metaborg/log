@@ -3,11 +3,9 @@ plugins {
 }
 
 dependencies {
-    api(platform(project(":log.depconstraints")))
-
     api(project(":log.api"))
 
-    api("org.slf4j:slf4j-api:1.7.25")
+    api(libs.slf4j.api)
 
-    compileOnly("org.checkerframework:checker-qual-android")
+    compileOnly(libs.checkerframework.android)
 }
