@@ -5,18 +5,11 @@ plugins {
     id("org.metaborg.convention.maven-publish")
 }
 
-group = "org.metaborg"
-
 dependencies {
     api(project(":log.api"))
     api(libs.logback)
 
     compileOnly(libs.checkerframework.android)
-}
-
-mavenPublishConvention {
-    repoOwner.set("metaborg")
-    repoName.set("log")
 }
 
 publishing {
