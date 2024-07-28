@@ -10,7 +10,7 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("mavenJava") {
+        create<MavenPublication>("mavenLibrary") {
             from(components["java"])
         }
     }
