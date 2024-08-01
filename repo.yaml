@@ -8,7 +8,7 @@ description: |
   A logging abstraction library for Metaborg projects.
 inceptionYear: "2017"
 
-libraries:
+spoofax3Libraries:
   - group: "org.metaborg"
     name: "log.api"
     description: "Log API"
@@ -22,18 +22,22 @@ libraries:
     name: "log.dagger"
     description: "Log Dagger bindings"
 
-developers:
+contributors:
   - id: "Gohla"
     name: "Gabriel Konat"
   - id: "Virtlink"
     name: "Daniel A. A. Pelsmaeker"
+
+developers:
+  - id: "Apanatshka"
+    name: "Jeff Smits"
 
 files:
   githubWorkflows:
     publishRelease: true
     publishSnapshot: true
   gradleRootProject:
-    createPublishTasks: true
+    generate: true
     rootProjectName: "log.root"
     includedProjects:
       - name: ":log.api"

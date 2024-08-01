@@ -1,4 +1,6 @@
-rootProject.name = "log.root"
+// !! THIS FILE WAS GENERATED USING repoman !!
+// Modify `repo.yaml` instead and use `repoman` to update this file
+// See: https://github.com/metaborg/metaborg-gradle/
 
 dependencyResolutionManagement {
     repositories {
@@ -18,7 +20,7 @@ plugins {
     id("org.metaborg.convention.settings") version "latest.integration"
 }
 
-
+rootProject.name = "log.root"
 include(":log.api")
 include(":log.backend.logback")
 include(":log.backend.slf4j")
